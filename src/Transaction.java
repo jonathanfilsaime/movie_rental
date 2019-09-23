@@ -11,6 +11,7 @@ public class Transaction {
     public Transaction(List<Rental> rentals, Customer customer) {
         this.rentals = rentals;
         this.customer = customer;
+        this.price = new BigDecimal(0);
     }
 
 
@@ -21,7 +22,7 @@ public class Transaction {
             amount += rentals.get(i).getPrice().doubleValue();
         }
 
-        price = new BigDecimal(amount);
+        price = new BigDecimal(amount + price.doubleValue()).setScale(1);
         return price;
     }
 
@@ -45,10 +46,10 @@ public class Transaction {
         System.err.println("Rental Record for " + customer.getName());
 
         rentals.forEach( r -> {
-            System.err.println("\t" + r.getMovie().getTitle() + "\t" + r.getMovie().getPrice() + "\n");
+            System.err.print("\t" + r.getMovie().getTitle() + "\t" + r.getMovie().getPrice() + "\n");
         });
 
-        System.err.println("Amount owed is " + computePrice());
+        System.err.println("Amount owed is " + price.toString());
         System.err.println("You earned " + customer.getRewardPoints() + " frequent renter points");
 
         return this.toString();

@@ -2,8 +2,8 @@ import java.math.BigDecimal;
 
 public class RegularMovie extends Movie {
 
-    private double price = 0;
-    private int numberOfDays = 0;
+    private double price;
+    private int numberOfDays;
 
     public RegularMovie(String title, boolean newRelease, int numberOfDays) {
         super(title, newRelease, numberOfDays);
@@ -12,8 +12,11 @@ public class RegularMovie extends Movie {
 
     @Override
     public BigDecimal getPrice() {
+
+        price = 0;
+
         if (this.isNewRelease()) {
-            return new BigDecimal(this.numberOfDays * 3);
+            return new BigDecimal(this.numberOfDays * 3).setScale(1);
         }
 
         price += 2;
@@ -21,7 +24,7 @@ public class RegularMovie extends Movie {
             price += (this.numberOfDays -2) * 1.5;
         }
 
-        return new BigDecimal(price);
+        return new BigDecimal(price).setScale(1);
     }
 
 
