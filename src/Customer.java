@@ -35,8 +35,9 @@ public class Customer {
 
     public Transaction rent(List<Rental> rentals){
         Transaction transaction = new Transaction(rentals, this);
+        transaction.computePrice();
+        setRewardPoints(transaction.computeRewardPoint());
         transactionHistory.add(transaction);
-
         return transaction;
 
     }

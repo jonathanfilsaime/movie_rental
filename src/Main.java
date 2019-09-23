@@ -13,14 +13,9 @@ public class Main {
         jonathanRentals.add(matrixRental);
 
         Transaction transaction = jonathan.rent(jonathanRentals);
-        System.err.println(transaction.computePrice());
         transaction.getStatement();
 
-//        jonathan.rent(jonathanRentals);
-//        jonathan.rent(jonathanRentals);
-//        jonathan.rent(jonathanRentals);
-//
-//        jonathan.getStatementHistory();
+
 
 
     }

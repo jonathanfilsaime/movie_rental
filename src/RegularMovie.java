@@ -2,7 +2,7 @@ import java.math.BigDecimal;
 
 public class RegularMovie extends Movie {
 
-    private double price;
+    private double price = 0;
     private int numberOfDays = 0;
 
     public RegularMovie(String title, boolean newRelease, int numberOfDays) {

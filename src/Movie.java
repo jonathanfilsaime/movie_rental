@@ -32,12 +32,12 @@ public class Movie implements Rental {
 
     @Override
     public int getDaysRented() {
-        return 0;
+        return this.numberOfDays;
     }
 
     @Override
     public Movie getMovie() {
-        return null;
+        return this;
     }
 
     @Override

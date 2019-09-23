@@ -11,16 +11,6 @@ public class ChildrenMovie extends Movie {
     }
 
     @Override
-    public int getDaysRented() {
-        return 0;
-    }
-
-    @Override
-    public Movie getMovie() {
-        return null;
-    }
-
-    @Override
     public BigDecimal getPrice() {
         if (this.isNewRelease()) {
             return new BigDecimal(this.numberDays * 3);
