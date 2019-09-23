@@ -42,14 +42,14 @@ public class Transaction {
 
 
     public String getStatement(){
-        System.err.println(customer.getName());
+        System.err.println("Rental Record for " + customer.getName());
 
         rentals.forEach( r -> {
-            System.err.println(r.getMovie().getTitle());
-            System.err.println(r.getMovie().getPrice());
+            System.err.println("\t" + r.getMovie().getTitle() + "\t" + r.getMovie().getPrice() + "\n");
         });
 
-        System.err.println(customer.getRewardPoints());
+        System.err.println("Amount owed is " + computePrice());
+        System.err.println("You earned " + customer.getRewardPoints() + " frequent renter points");
 
         return this.toString();
     }
