@@ -1,17 +1,19 @@
-package output;
+package refactored.output.model.xml;
 
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
+/**
+ * this class is only use to marshall the output
+ * from a java object to an XML representation
+ */
 @XmlRootElement
 public class Statement {
 
     private String customerName;
     private List<Item> MovieTitleAndPrice;
-    private String amountOwe;
+    private String amountOwed;
     private String frequentRentPoints;
 
     public Statement() {
@@ -20,7 +22,7 @@ public class Statement {
     public Statement(String customerName, List<Item> movieTitleAndPrice, String amountOwe, String frequentRentPoints) {
         this.customerName = customerName;
         MovieTitleAndPrice = movieTitleAndPrice;
-        this.amountOwe = amountOwe;
+        this.amountOwed = amountOwe;
         this.frequentRentPoints = frequentRentPoints;
     }
 
@@ -42,13 +44,13 @@ public class Statement {
         MovieTitleAndPrice = movieTitleAndPrice;
     }
 
-    public String getAmountOwe() {
-        return amountOwe;
+    public String getAmountOwed() {
+        return amountOwed;
     }
 
     @XmlElement
-    public void setAmountOwe(String amountOwe) {
-        this.amountOwe = amountOwe;
+    public void setAmountOwed(String amountOwed) {
+        this.amountOwed = amountOwed;
     }
 
     public String getFrequentRentPoints() {

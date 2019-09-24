@@ -2,9 +2,12 @@ package refactored;
 
 import java.math.BigDecimal;
 
+/**
+ * This class models a Movie and implements the Interface Rental
+ */
 public class Movie implements Rental {
 
-    private int numberOfDays = 0;
+    private int numberOfDays;
     private String title;
     private boolean newRelease;
 
@@ -15,21 +18,12 @@ public class Movie implements Rental {
         this.numberOfDays = numberOfDays;
     }
 
-
     public String getTitle() {
         return title;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
     public boolean isNewRelease() {
         return newRelease;
-    }
-
-    public void setNewRelease(boolean newRelease) {
-        this.newRelease = newRelease;
     }
 
     @Override

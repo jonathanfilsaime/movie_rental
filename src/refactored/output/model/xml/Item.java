@@ -1,8 +1,12 @@
-package output;
+package refactored.output.model.xml;
 
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
+/**
+ * this class is only use to marshall the output
+ * from a java object to an XML representation
+ */
 @XmlRootElement
 public class Item {
 

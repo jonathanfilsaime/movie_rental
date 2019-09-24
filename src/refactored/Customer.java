@@ -3,6 +3,12 @@ package refactored;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * this class models the customer it holds
+ * the customer's name
+ * the customer's reward points
+ * the customer's transaction history
+ */
 public class Customer {
     private String name;
     private int rewardPoints;
@@ -26,6 +32,14 @@ public class Customer {
         this.rewardPoints = rewardPoints;
     }
 
+    /**
+     * This method
+     * 1-computes the price
+     * 2-updates the customer's frequent renter point
+     * 3-add the transaction to the transaction history
+     * @param rentals
+     * @return
+     */
     public Transaction rent(List<Rental> rentals){
         Transaction transaction = new Transaction(rentals, this);
         transaction.computePrice();

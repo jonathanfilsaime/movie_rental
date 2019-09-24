@@ -1,14 +1,13 @@
 package refactored;
 
-import output.Item;
-import output.Statement;
+import refactored.output.model.xml.Item;
+import refactored.output.model.xml.Statement;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
 import java.math.BigDecimal;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 public class Transaction {
@@ -52,20 +51,30 @@ public class Transaction {
 
 
     public String getStatement(){
-//        System.err.println("refactored.Rental Record for " + customer.getName());
+        System.out.println("Rental Record for " + customer.getName());
+
+        rentals.forEach( r -> {
+            System.out.print("\t" + r.getMovie().getTitle() + "\t" + r.getMovie().getPrice() + "\n");
+        });
+
+        System.out.println("Amount owed is " + price.toString());
+        System.out.println("You earned " + customer.getRewardPoints() + " frequent renter points  ");
+
+
+        return this.toString();
+    }
+
+    public void getStatementOutputInXML(){
+
 
         List<Item> movieTitleAndPriceList = new ArrayList<>();
 
         rentals.forEach( r -> {
-//            System.err.print("\t" + r.getMovie().getTitle() + "\t" + r.getMovie().getPrice() + "\n");
 
             Item movieTitleAndPrice = new Item(r.getMovie().getTitle(), r.getMovie().getPrice().toString());
             movieTitleAndPriceList.add(movieTitleAndPrice);
 
         });
-
-//        System.err.println("Amount owed is " + price.toString());
-//        System.err.println("You earned " + customer.getRewardPoints() + " frequent renter points  ");
 
         Statement statement = new Statement(customer.getName(), movieTitleAndPriceList, price.toString(), Integer.toString(customer.getRewardPoints()));
 
@@ -74,13 +83,12 @@ public class Transaction {
             JAXBContext jaxbContext = JAXBContext.newInstance(Statement.class);
             Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
             jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
-            jaxbMarshaller.marshal(statement, System.err);
+            jaxbMarshaller.marshal(statement, System.out);
 
         } catch (JAXBException e) {
             e.printStackTrace();
         }
 
-        return this.toString();
     }
 
 }
