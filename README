@@ -1,0 +1,11 @@
+src -> original
+    contains the code by Dr. Tien
+    I added a class TestOriginalCode
+    to better understand the code
+
+src -> refactored
+    contains the code that I refactored
+
+src -> refactored -> output -> model -> xml
+    contains helper class to format the
+    jav output into xml format
