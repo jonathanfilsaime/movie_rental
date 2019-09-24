@@ -1,3 +1,5 @@
+package refactored;
+
 import java.math.BigDecimal;
 
 public class RegularMovie extends Movie {
@@ -30,7 +32,7 @@ public class RegularMovie extends Movie {
 
     @Override
     public String toString() {
-        return "RegularMovie{" +
+        return "refactored.RegularMovie{" +
                 "price=" + price +
                 '}';
     }

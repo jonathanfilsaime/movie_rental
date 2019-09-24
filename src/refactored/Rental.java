@@ -1,3 +1,5 @@
+package refactored;
+
 import java.math.BigDecimal;
 
 public interface Rental {

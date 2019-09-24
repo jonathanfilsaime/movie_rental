@@ -1,3 +1,5 @@
+package refactored;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,10 +18,6 @@ public class Customer {
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public int getRewardPoints() {
         return rewardPoints;
     }
@@ -27,11 +25,6 @@ public class Customer {
     public void setRewardPoints(int rewardPoints) {
         this.rewardPoints = rewardPoints;
     }
-
-    public List<Transaction> getTransactions() {
-        return transactionHistory;
-    }
-
 
     public Transaction rent(List<Rental> rentals){
         Transaction transaction = new Transaction(rentals, this);
@@ -42,15 +35,9 @@ public class Customer {
 
     }
 
-    public void getStatementHistory(){
-        transactionHistory.forEach( p -> {
-            p.getStatement();
-        });
-    }
-
     @Override
     public String toString() {
-        return "Customer{" +
+        return "refactored.Customer{" +
                 "name='" + name + '\'' +
                 ", rewardPoints=" + rewardPoints +
                 ", transactions=" + transactionHistory +
