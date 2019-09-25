@@ -32,7 +32,7 @@ public class Main {
         Transaction christophersTransaction = christopher.rent(christophersRentals);
 
         //Christopher's transaction statement
-        christophersTransaction.getStatement();
+        System.out.println(christophersTransaction.getStatement());
         System.out.println("===XML===");
         christophersTransaction.getStatementOutputInXML();
         System.out.println("=========");
@@ -61,7 +61,7 @@ public class Main {
         Transaction fionasTransaction = fiona.rent(fionasRentals);
 
         //fiona's transaction statement
-        fionasTransaction.getStatement();
+        System.out.println(fionasTransaction.getStatement());
         System.out.println("===XML===");
         fionasTransaction.getStatementOutputInXML();
         System.out.println("=========");
@@ -90,7 +90,7 @@ public class Main {
         Transaction laurasTransaction = laura.rent(laurasRentals);
 
         //Laura's transaction statement
-        laurasTransaction.getStatement();
+        System.out.println(laurasTransaction.getStatement());
         System.out.println("===XML===");
         laurasTransaction.getStatementOutputInXML();
         System.out.println("=========");
@@ -119,7 +119,7 @@ public class Main {
         Transaction jonathansTransaction = jonathan.rent(jonathansRentals);
 
         //Jonathan's transaction statement
-        jonathansTransaction.getStatement();
+        System.out.println(jonathansTransaction.getStatement());
         System.out.println("===XML===");
         jonathansTransaction.getStatementOutputInXML();
         System.out.println("=========");

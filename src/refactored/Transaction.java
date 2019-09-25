@@ -10,6 +10,13 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * this class is used to do the following computation:
+ * 1- computes price
+ * 2- computes reward points
+ * 3- computes the statement
+ * 4- outputs the statement in XML
+ */
 public class Transaction {
 
     private List<Rental> rentals;
@@ -50,18 +57,23 @@ public class Transaction {
     }
 
 
+    /**
+     *
+     * @return String
+     */
     public String getStatement(){
-        System.out.println("Rental Record for " + customer.getName());
+        StringBuilder result = new StringBuilder();
+
+        result.append("Rental Record for " + customer.getName() + "\n");
 
         rentals.forEach( r -> {
-            System.out.print("\t" + r.getMovie().getTitle() + "\t" + r.getMovie().getPrice() + "\n");
+            result.append("\t" + r.getMovie().getTitle() + "\t" + r.getMovie().getPrice() + "\n");
         });
 
-        System.out.println("Amount owed is " + price.toString());
-        System.out.println("You earned " + customer.getRewardPoints() + " frequent renter points  ");
+        result.append("Amount owed is " + price.toString() + "\n");
+        result.append("You earned " + customer.getRewardPoints() + " frequent renter points  " + "\n");
 
-
-        return this.toString();
+        return result.toString();
     }
 
     public void getStatementOutputInXML(){

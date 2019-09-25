@@ -16,7 +16,7 @@ public class TestRefactoredCode {
 
         jonathanRentals.add(matrixRental1day);
         Transaction transaction0 = jonathan.rent(jonathanRentals);
-        transaction0.getStatement();
+        System.out.println(transaction0.getStatement());
         System.out.println("====XML====");
         transaction0.getStatementOutputInXML();
 
@@ -26,7 +26,7 @@ public class TestRefactoredCode {
         Rental matrixRental3day = new ChildrenMovie("Matrix", false, 3);
         jonathanRentals.add(matrixRental1day);
         Transaction transaction1 = jonathan.rent(jonathanRentals);
-        transaction1.getStatement();
+        System.out.println(transaction1.getStatement());
         System.out.println("====XML====");
         transaction1.getStatementOutputInXML();
 
@@ -36,7 +36,7 @@ public class TestRefactoredCode {
         Rental matrixRental5day = new ChildrenMovie("Matrix", false, 5);
         jonathanRentals.add(matrixRental5day);
         Transaction transaction2 = jonathan.rent(jonathanRentals);
-        transaction2.getStatement();
+        System.out.println(transaction2.getStatement());
         System.out.println("====XML====");
         transaction2.getStatementOutputInXML();
 
@@ -47,7 +47,7 @@ public class TestRefactoredCode {
         Rental supermanRental1day = new RegularMovie("Superman", false, 1);
         jonathanRentals.add(supermanRental1day);
         Transaction transaction3 = jonathan.rent(jonathanRentals);
-        transaction3.getStatement();
+        System.out.println(transaction3.getStatement());
         System.out.println("====XML====");
         transaction3.getStatementOutputInXML();
 
@@ -58,7 +58,7 @@ public class TestRefactoredCode {
         Rental supermanRental2day = new RegularMovie("Superman", false, 2);
         jonathanRentals.add(supermanRental2day);
         Transaction transaction4 = jonathan.rent(jonathanRentals);
-        transaction4.getStatement();
+        System.out.println(transaction4.getStatement());
         System.out.println("====XML====");
         transaction4.getStatementOutputInXML();
 
@@ -68,7 +68,7 @@ public class TestRefactoredCode {
         Rental supermanRental5day = new RegularMovie("Superman", false, 5);
         jonathanRentals.add(supermanRental5day);
         Transaction transaction5 = jonathan.rent(jonathanRentals);
-        transaction5.getStatement();
+        System.out.println(transaction5.getStatement());
         System.out.println("====XML====");
         transaction5.getStatementOutputInXML();
 
@@ -78,7 +78,7 @@ public class TestRefactoredCode {
         Rental batmanRental1day = new RegularMovie("Batman", true, 1);
         jonathanRentals.add(batmanRental1day);
         Transaction transaction6 = jonathan.rent(jonathanRentals);
-        transaction6.getStatement();
+        System.out.println(transaction6.getStatement());
         System.out.println("====XML====");
         transaction6.getStatementOutputInXML();
 
@@ -88,7 +88,7 @@ public class TestRefactoredCode {
         Rental batmanRental3day = new RegularMovie("Batman", true, 3);
         jonathanRentals.add(batmanRental3day);
         Transaction transaction7 = jonathan.rent(jonathanRentals);
-        transaction7.getStatement();
+        System.out.println(transaction7.getStatement());
         System.out.println("====XML====");
         transaction7.getStatementOutputInXML();
 
@@ -98,7 +98,7 @@ public class TestRefactoredCode {
         Rental batmanRental5day = new RegularMovie("Batman", true, 5);
         jonathanRentals.add(batmanRental5day);
         Transaction transaction8 = jonathan.rent(jonathanRentals);
-        transaction8.getStatement();
+        System.out.println(transaction8.getStatement());
         System.out.println("====XML====");
         transaction8.getStatementOutputInXML();
 
