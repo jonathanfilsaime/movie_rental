@@ -11,13 +11,15 @@ import java.util.List;
  */
 public class Customer {
     private String name;
+    private int age;
     private int rewardPoints;
     private List<Transaction> transactionHistory;
 
 
-    public Customer(String name) {
+    public Customer(String name, int age) {
         transactionHistory = new ArrayList<>();
         this.name = name;
+        this.age = age;
     }
 
     public String getName() {
@@ -26,6 +28,10 @@ public class Customer {
 
     public int getRewardPoints() {
         return rewardPoints;
+    }
+
+    public int getAge() {
+        return age;
     }
 
     public void setRewardPoints(int rewardPoints) {
@@ -42,11 +48,15 @@ public class Customer {
      */
     public Transaction rent(List<Rental> rentals){
         Transaction transaction = new Transaction(rentals, this);
+        transactionHistory.add(transaction);
         transaction.computePrice();
         setRewardPoints(transaction.computeRewardPoint());
-        transactionHistory.add(transaction);
         return transaction;
 
+    }
+
+    public List<Transaction> getTransactionHistory() {
+        return transactionHistory;
     }
 
     @Override

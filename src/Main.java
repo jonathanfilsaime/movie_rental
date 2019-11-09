@@ -18,7 +18,7 @@ public class Main {
         Rental frozen = new ChildrenMovie("Frozen", false, 5);
 
         //creating new customer called Christopher
-        Customer christopher = new Customer("Christopher");
+        Customer christopher = new Customer("Christopher", 4);
 
         //Christopher list of rental
         List<Rental> christophersRentals = new ArrayList<>();
@@ -37,6 +37,7 @@ public class Main {
         christophersTransaction.getStatementOutputInXML();
         System.out.println("=========");
 
+        //expected 3 points
         System.out.println();
 
         //=================================================================================================//
@@ -47,7 +48,7 @@ public class Main {
         Rental terminator = new RegularMovie("The Terminator", false, 5);
 
         //creating new customer called Fiona
-        Customer fiona = new Customer("Fiona");
+        Customer fiona = new Customer("Fiona", 5);
 
         //Fiona list of rental
         List<Rental> fionasRentals = new ArrayList<>();
@@ -73,10 +74,10 @@ public class Main {
         //the following 3 movies are children movies which are new releases
         Rental dumbo = new ChildrenMovie("Dumbo", true, 1);
         Rental toyStory = new ChildrenMovie("Toy Story", true, 3);
-        Rental lionKing = new ChildrenMovie("The Lion King", true, 5);
+        Rental lionKing = new RegularMovie("The Lion King", true, 5);
 
         //creating new customer called Laura
-        Customer laura = new Customer("Laura");
+        Customer laura = new Customer("Laura", 16);
 
         //laura list of rental
         List<Rental> laurasRentals = new ArrayList<>();
@@ -100,19 +101,19 @@ public class Main {
         //=================================================================================================//
 
         //the following 3 movies are children movies which are new releases
-        Rental johnWick = new RegularMovie("John Wick", true, 1);
-        Rental jocker = new RegularMovie("Jocker", true, 2);
+        Rental johnWick = new ChildrenMovie("John Wick", true, 1);
+        Rental joker = new RegularMovie("Joker", true, 1);
         Rental godzilla = new RegularMovie("Godzilla", true, 5);
 
         //creating new customer called Jonathan
-        Customer jonathan = new Customer("Jonathan");
+        Customer jonathan = new Customer("Jonathan", 19);
 
         //Jonathan list of rental
         List<Rental> jonathansRentals = new ArrayList<>();
 
         //adding movies to Jonathan's list of rental
         jonathansRentals.add(johnWick);
-        jonathansRentals.add(jocker);
+        jonathansRentals.add(joker);
         jonathansRentals.add(godzilla);
 
         //Jonathan rents 3 movies "John Wick, Jocker, Godzilla"

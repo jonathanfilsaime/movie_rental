@@ -47,13 +47,12 @@ public class Transaction {
         int frequentRenterPoint = 0;
 
         for(int i = 0; i < rentals.size(); i++ ){
-            frequentRenterPoint++;
-
-            if(rentals.get(i).getMovie().isNewRelease() && rentals.get(i).getDaysRented() > 1){
-                frequentRenterPoint++;
-            }
+            int points = 0;
+            frequentRenterPoint += new RewardPointsStrategyFactory().create(customer, rentals.get(i)).computerRewardPoints(points);
         }
         return frequentRenterPoint;
+
+
     }
 
 
@@ -73,7 +72,16 @@ public class Transaction {
         result.append("Amount owed is " + price.toString() + "\n");
         result.append("You earned " + customer.getRewardPoints() + " frequent renter points  " + "\n");
 
+        if (customer.getRewardPoints() >= 10) {
+            int point = customer.getRewardPoints() / 10;
+            result.append("Congratulations you've earned " + point + " free movie rentals");
+        }
+
         return result.toString();
+    }
+
+    public List<Rental> getRentals() {
+        return rentals;
     }
 
     public void getStatementOutputInXML(){
