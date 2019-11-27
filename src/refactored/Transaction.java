@@ -36,7 +36,7 @@ public class Transaction {
             amount += items.get(i).getPrice().doubleValue();
         }
 
-        price = new BigDecimal(amount + price.doubleValue()).setScale(1);
+        price = new BigDecimal(amount + price.doubleValue()).setScale(2, BigDecimal.ROUND_UP);
         return price;
     }
 

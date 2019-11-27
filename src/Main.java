@@ -42,6 +42,38 @@ public class Main {
 
         //=================================================================================================//
 
+        Item sudoku = new Book("Sudoku");
+
+        Customer jeff =  new Customer("Jeff", 35);
+
+        List<Item> jeffsItems = new ArrayList<>();
+        jeffsItems.add(sudoku);
+
+        Transaction jeffTransactions = jeff.checkout(jeffsItems);
+
+        System.out.println(jeffTransactions.getStatement());
+
+        Item michaelJackson = new CompactDisc("Thriller");
+        Item madonna = new CompactDisc("immaculate", 2);
+
+        Customer kendall = new Customer("Kendall", 28);
+
+        List<Item> kendallsItems = new ArrayList<>();
+
+        kendallsItems.add(michaelJackson);
+        kendallsItems.add(madonna);
+
+        Transaction kendallsTransaction = kendall.checkout(kendallsItems);
+
+        System.out.println(kendallsTransaction.getStatement());
+
+
+
+
+
+
+
+
 //        //the following 3 movies are regular movies which are not new releases
 //        Rental forrestGump = new RegularMovie("Forest Gump", false, 1);
 //        Rental sandlot = new RegularMovie("The sandlot", false, 2);

@@ -9,37 +9,63 @@ import java.math.BigDecimal;
  * 1- Children Movie - new release
  * 2- Children Movie - not new release
  */
-public class ChildrenMovie extends Movie {
+public class ChildrenMovie extends Movie implements Item {
 
-    private double price;
+    private String title;
+    private Type type;
+    private boolean newRelease;
     private int numberOfDays;
+
+    public ChildrenMovie(String title, boolean newRelease) {
+        super(title, newRelease);
+        this.title = title;
+        this.newRelease = newRelease;
+        this.type = Type.PURCHASEABLE;
+    }
 
     public ChildrenMovie(String title, boolean newRelease, int numberOfDays) {
         super(title, newRelease, numberOfDays);
         this.numberOfDays = numberOfDays;
+        this.title = title;
+        this.newRelease = newRelease;
+        this.numberOfDays = numberOfDays;
+        this.type = Type.RENTABLE;
     }
 
     @Override
     public BigDecimal getPrice() {
 
-        price = 0;
+        if(Type.PURCHASEABLE.equals(super.getType()) && isNewRelease()){
 
-        if (this.isNewRelease()) {
-            return new BigDecimal(this.numberOfDays * 3).setScale(1);
+            return Price.Builder.newInstance()
+                    .setChildrenMoviePurchase()
+                    .newReleasePurchase()
+                    .build().computePrice();
+
+        } else if (Type.PURCHASEABLE.equals(super.getType()) && !isNewRelease()) {
+
+            return Price.Builder.newInstance()
+                    .setChildrenMoviePurchase()
+                    .build().computePrice();
+
+        } else if (!Type.PURCHASEABLE.equals(super.getType()) && isNewRelease()) {
+
+            return Price.Builder.newInstance()
+                    .setChildrenMovieRental(numberOfDays)
+                    .newReleaseRental(numberOfDays)
+                    .build().computePrice();
+        } else {
+
+            return Price.Builder.newInstance()
+                    .setChildrenMovieRental(numberOfDays)
+                    .build().computePrice();
         }
-
-        price += 1.5;
-        if(this.numberOfDays > 3){
-            price += (this.numberOfDays -3)* 1.5;
-        }
-
-        return new BigDecimal(price).setScale(1);
     }
 
     @Override
     public String toString() {
         return "refactored.ChildrenMovie{" +
-                "price=" + price +
+                "price=" + super.getPrice() +
                 '}';
     }
 }

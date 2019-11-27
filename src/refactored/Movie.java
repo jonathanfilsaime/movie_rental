@@ -12,6 +12,8 @@ public class Movie implements Rental, Item {
     private boolean newRelease;
     private Type type;
 
+    public Movie() {}
+
     public Movie(String title, boolean newRelease) {
         this.title = title;
         this.newRelease = newRelease;
@@ -47,10 +49,31 @@ public class Movie implements Rental, Item {
 
     @Override
     public BigDecimal getPrice() {
-        if (type == Type.RENTABLE) {
-            return new BigDecimal(this.numberOfDays * 3);
+        if(Type.PURCHASEABLE.equals(type) && isNewRelease()){
+
+            return Price.Builder.newInstance()
+                    .setMoviePurchase()
+                    .newReleasePurchase()
+                    .build().computePrice();
+
+        } else if (Type.PURCHASEABLE.equals(type) && !isNewRelease()) {
+
+            return Price.Builder.newInstance()
+                    .setMoviePurchase()
+                    .build().computePrice();
+
+        } else if (!Type.PURCHASEABLE.equals(type) && isNewRelease()) {
+
+            return Price.Builder.newInstance()
+                    .setMovieRental(numberOfDays)
+                    .newReleaseRental(numberOfDays)
+                    .build().computePrice();
+
         } else {
-            return new BigDecimal(5);
+
+            return Price.Builder.newInstance()
+                    .setMovieRental(numberOfDays)
+                    .build().computePrice();
         }
     }
 
