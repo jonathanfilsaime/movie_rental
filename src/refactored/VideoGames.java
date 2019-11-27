@@ -24,7 +24,25 @@ public class VideoGames implements Item {
 
     @Override
     public BigDecimal getPrice() {
-        return new BigDecimal(9.99).setScale(2, BigDecimal.ROUND_UP);
+        if(Type.PURCHASEABLE.equals(this.type) ){
+
+            return Price.Builder
+                    .newInstance()
+                    .setVideoGamePurchase()
+                    .build()
+                    .computePrice()
+                    .setScale(2, BigDecimal.ROUND_UP);
+
+        }  else {
+
+            return Price
+                    .Builder
+                    .newInstance()
+                    .setVideoGameRental(daysRented)
+                    .build()
+                    .computePrice()
+                    .setScale(2, BigDecimal.ROUND_UP);
+        }
     }
 
     @Override

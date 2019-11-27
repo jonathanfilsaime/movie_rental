@@ -24,7 +24,26 @@ public class PSFour implements Item {
 
     @Override
     public BigDecimal getPrice() {
-        return new BigDecimal(9.99).setScale(2, BigDecimal.ROUND_UP);
+
+        if(Type.PURCHASEABLE.equals(this.type) ){
+
+            return Price.Builder
+                    .newInstance()
+                    .setPsFourPurchase()
+                    .build()
+                    .computePrice()
+                    .setScale(2, BigDecimal.ROUND_UP);
+
+        }  else {
+
+            return Price
+                    .Builder
+                    .newInstance()
+                    .setPsFourRental(daysRented)
+                    .build()
+                    .computePrice()
+                    .setScale(2, BigDecimal.ROUND_UP);
+        }
     }
 
     @Override

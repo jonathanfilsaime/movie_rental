@@ -27,14 +27,22 @@ public class Book implements Item {
 
         if(Type.PURCHASEABLE.equals(type)){
 
-            return Price.Builder.newInstance()
+            return Price
+                    .Builder
+                    .newInstance()
                     .setBookPurchase()
-                    .build().computePrice().setScale(2, BigDecimal.ROUND_UP);
+                    .build()
+                    .computePrice()
+                    .setScale(2, BigDecimal.ROUND_UP);
         } else {
 
-            return Price.Builder.newInstance()
+            return Price
+                    .Builder
+                    .newInstance()
                     .setBookRental(daysRented)
-                    .build().computePrice().setScale(2, BigDecimal.ROUND_UP);
+                    .build()
+                    .computePrice()
+                    .setScale(2, BigDecimal.ROUND_UP);
         }
     }
 
@@ -52,4 +60,6 @@ public class Book implements Item {
     public String getTitle() {
         return title;
     }
+
+
 }

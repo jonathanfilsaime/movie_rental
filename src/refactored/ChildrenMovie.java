@@ -35,31 +35,54 @@ public class ChildrenMovie extends Movie implements Item {
     @Override
     public BigDecimal getPrice() {
 
-        if(Type.PURCHASEABLE.equals(super.getType()) && isNewRelease()){
+        if (Type.PURCHASEABLE.equals(super.getType())) {
 
-            return Price.Builder.newInstance()
-                    .setChildrenMoviePurchase()
-                    .newReleasePurchase()
-                    .build().computePrice();
+            if (isNewRelease()) {
 
-        } else if (Type.PURCHASEABLE.equals(super.getType()) && !isNewRelease()) {
+                return Price
+                        .Builder
+                        .newInstance()
+                        .setChildrenMoviePurchase()
+                        .newReleasePurchase()
+                        .build()
+                        .computePrice()
+                        .setScale(2, BigDecimal.ROUND_UP);
 
-            return Price.Builder.newInstance()
-                    .setChildrenMoviePurchase()
-                    .build().computePrice();
+            } else {
 
-        } else if (!Type.PURCHASEABLE.equals(super.getType()) && isNewRelease()) {
+                return Price
+                        .Builder
+                        .newInstance()
+                        .setChildrenMoviePurchase()
+                        .build()
+                        .computePrice()
+                        .setScale(2, BigDecimal.ROUND_UP);
 
-            return Price.Builder.newInstance()
-                    .setChildrenMovieRental(numberOfDays)
-                    .newReleaseRental(numberOfDays)
-                    .build().computePrice();
-        } else {
-
-            return Price.Builder.newInstance()
-                    .setChildrenMovieRental(numberOfDays)
-                    .build().computePrice();
+            }
         }
+        //rental
+        else
+
+        {
+            if(isNewRelease()) {
+
+                return Price.Builder.newInstance()
+                        .setChildrenMovieRental(numberOfDays)
+                        .newReleaseRental(numberOfDays)
+                        .build()
+                        .computePrice()
+                        .setScale(2, BigDecimal.ROUND_UP);
+            } else {
+
+                return Price.Builder.newInstance()
+                        .setChildrenMovieRental(numberOfDays)
+                        .build()
+                        .computePrice()
+                        .setScale(2, BigDecimal.ROUND_UP);
+
+            }
+        }
+
     }
 
     @Override

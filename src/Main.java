@@ -12,6 +12,8 @@ public class Main {
 
     public static void main(String[] args) {
 
+        Store store = new Store();
+
         //the following 3 movies are children movies which are not new releases
         Item aladdin = new ChildrenMovie("Aladdin", false, 1);
         Item up = new ChildrenMovie("Up", false, 3);
@@ -29,29 +31,27 @@ public class Main {
         christophersItems.add(frozen);
 
         //Christopher rents 3 movies "aladdin, Frozen, Up"
-        Transaction christophersTransaction = christopher.checkout(christophersItems);
+        Transaction christophersTransaction = store.checkout(christopher, christophersItems);
 
-        //Christopher's transaction statement
-        System.out.println(christophersTransaction.getStatement());
-        System.out.println("===XML===");
-        christophersTransaction.getStatementOutputInXML();
-        System.out.println("=========");
-
-        //expected 3 points
-        System.out.println();
+        System.out.println(store.getStatement(christophersTransaction));
+        System.out.println(store.getStatement(christophersTransaction));
 
         //=================================================================================================//
 
         Item sudoku = new Book("Sudoku");
+        Item crossWord = new Book("Crossword", 6);
 
         Customer jeff =  new Customer("Jeff", 35);
 
         List<Item> jeffsItems = new ArrayList<>();
         jeffsItems.add(sudoku);
+        jeffsItems.add(crossWord);
 
-        Transaction jeffTransactions = jeff.checkout(jeffsItems);
+        Transaction jeffTransactions = store.checkout(jeff, jeffsItems);
 
-        System.out.println(jeffTransactions.getStatement());
+        System.out.println(store.getStatement(jeffTransactions));
+
+        //=================================================================================================//
 
         Item michaelJackson = new CompactDisc("Thriller");
         Item madonna = new CompactDisc("immaculate", 2);
@@ -63,103 +63,81 @@ public class Main {
         kendallsItems.add(michaelJackson);
         kendallsItems.add(madonna);
 
-        Transaction kendallsTransaction = kendall.checkout(kendallsItems);
+        Transaction kendallsTransaction = store.checkout(kendall, kendallsItems);
 
-        System.out.println(kendallsTransaction.getStatement());
-
-
+        System.out.println(store.getStatement(kendallsTransaction));
 
 
+        //the following 3 movies are regular movies which are not new releases
+        Item forrestGump = new RegularMovie("Forest Gump", false);
+        Item sandlot = new ChildrenMovie("The sandlot", false, 2);
+        Item terminator = new RegularMovie("The Terminator", false, 5);
 
+        //creating new customer called Fiona
+        Customer fiona = new Customer("Fiona", 5);
 
+        //Fiona list of rental
+        List<Item> fionasRentals = new ArrayList<>();
 
+        //adding movies to Fiona's list of rental
+        fionasRentals.add(forrestGump);
+        fionasRentals.add(sandlot);
+        fionasRentals.add(terminator);
 
-//        //the following 3 movies are regular movies which are not new releases
-//        Rental forrestGump = new RegularMovie("Forest Gump", false, 1);
-//        Rental sandlot = new RegularMovie("The sandlot", false, 2);
-//        Rental terminator = new RegularMovie("The Terminator", false, 5);
-//
-//        //creating new customer called Fiona
-//        Customer fiona = new Customer("Fiona", 5);
-//
-//        //Fiona list of rental
-//        List<Rental> fionasRentals = new ArrayList<>();
-//
-//        //adding movies to Fiona's list of rental
-//        fionasRentals.add(forrestGump);
-//        fionasRentals.add(sandlot);
-//        fionasRentals.add(terminator);
-//
-//        //Fiona rents 3 movies "Forest Gump, The sandlot, The Terminator"
-//        Transaction fionasTransaction = fiona.checkout(fionasRentals);
-//
-//        //fiona's transaction statement
-//        System.out.println(fionasTransaction.getStatement());
-//        System.out.println("===XML===");
-//        fionasTransaction.getStatementOutputInXML();
-//        System.out.println("=========");
-//
-//        System.out.println();
-//
+        //Fiona rents 3 movies "Forest Gump, The sandlot, The Terminator"
+        Transaction fionasTransaction = store.checkout(fiona, fionasRentals);
+
+        System.out.println(store.getStatement(fionasTransaction));
+
 //        //=================================================================================================//
 //
-//        //the following 3 movies are children movies which are new releases
-//        Rental dumbo = new ChildrenMovie("Dumbo", true, 1);
-//        Rental toyStory = new ChildrenMovie("Toy Story", true, 3);
-//        Rental lionKing = new RegularMovie("The Lion King", true, 5);
-//
-//        //creating new customer called Laura
-//        Customer laura = new Customer("Laura", 16);
-//
-//        //laura list of rental
-//        List<Rental> laurasRentals = new ArrayList<>();
-//
-//        //adding movies to Laura's list of rental
-//        laurasRentals.add(dumbo);
-//        laurasRentals.add(toyStory);
-//        laurasRentals.add(lionKing);
-//
-//        //Laura rents 3 movies "Dumbo, Toy Story, The Lion King"
-//        Transaction laurasTransaction = laura.checkout(laurasRentals);
-//
-//        //Laura's transaction statement
-//        System.out.println(laurasTransaction.getStatement());
-//        System.out.println("===XML===");
-//        laurasTransaction.getStatementOutputInXML();
-//        System.out.println("=========");
-//
-//        System.out.println();
-//
+
+        Item console1 = new PSFour("PS4 250 GB");
+        Item console2 = new PSFour("PS4 1 TB", 50);
+
+        Customer mister = new Customer("mister", 80);
+
+        List<Item> mistersItems = new ArrayList<>();
+
+        mistersItems.add(console1);
+        mistersItems.add(console2);
+
+        Transaction mistersTransaction = store.checkout(mister, mistersItems);
+
+        System.out.println(store.getStatement(mistersTransaction));
+
 //        //=================================================================================================//
-//
-//        //the following 3 movies are children movies which are new releases
-//        Rental johnWick = new ChildrenMovie("John Wick", true, 1);
-//        Rental joker = new RegularMovie("Joker", true, 1);
-//        Rental godzilla = new RegularMovie("Godzilla", true, 5);
-//
-//        //creating new customer called Jonathan
-//        Customer jonathan = new Customer("Jonathan", 19);
-//
-//        //Jonathan list of rental
-//        List<Rental> jonathansRentals = new ArrayList<>();
-//
-//        //adding movies to Jonathan's list of rental
-//        jonathansRentals.add(johnWick);
-//        jonathansRentals.add(joker);
-//        jonathansRentals.add(godzilla);
-//
-//        //Jonathan rents 3 movies "John Wick, Jocker, Godzilla"
-//        Transaction jonathansTransaction = jonathan.checkout(jonathansRentals);
-//
-//        //Jonathan's transaction statement
-//        System.out.println(jonathansTransaction.getStatement());
-//        System.out.println("===XML===");
-//        jonathansTransaction.getStatementOutputInXML();
-//        System.out.println("=========");
-//
-//        System.out.println();
 
 
+        Item rocketLeague = new VideoGames("Rocket League");
+        Item bomberMan = new VideoGames("Bomber 1", 50);
+        Item bomberMan2 = new VideoGames("Bomber 2", 50);
+
+        Customer cat = new Customer("cat", 1);
+
+        List<Item> catItems = new ArrayList<>();
+
+        catItems.add(rocketLeague);
+        catItems.add(bomberMan);
+        catItems.add(bomberMan2);
+
+        Transaction catsTransactions = store.checkout(cat, catItems);
+
+        System.out.println(store.getStatement(catsTransactions));
+
+        //=================================================================================================//
+
+        Item xBox = new Xbox("XBOXXXXXXXXXXXX");
+
+        Customer durp = new Customer("durp", 16);
+
+        List<Item> durpItems = new ArrayList<>();
+
+        durpItems.add(xBox);
+
+        Transaction durpTransactions = store.checkout(durp, durpItems);
+
+        System.out.println(store.getStatement(durpTransactions));
 
     }
 }

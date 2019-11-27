@@ -49,31 +49,53 @@ public class Movie implements Rental, Item {
 
     @Override
     public BigDecimal getPrice() {
-        if(Type.PURCHASEABLE.equals(type) && isNewRelease()){
 
-            return Price.Builder.newInstance()
-                    .setMoviePurchase()
-                    .newReleasePurchase()
-                    .build().computePrice();
+        if (Type.PURCHASEABLE.equals(this.getType())) {
 
-        } else if (Type.PURCHASEABLE.equals(type) && !isNewRelease()) {
+            if (isNewRelease()) {
 
-            return Price.Builder.newInstance()
-                    .setMoviePurchase()
-                    .build().computePrice();
+                return Price
+                        .Builder
+                        .newInstance()
+                        .setMoviePurchase()
+                        .newReleasePurchase()
+                        .build()
+                        .computePrice();
 
-        } else if (!Type.PURCHASEABLE.equals(type) && isNewRelease()) {
+            } else {
 
-            return Price.Builder.newInstance()
-                    .setMovieRental(numberOfDays)
-                    .newReleaseRental(numberOfDays)
-                    .build().computePrice();
+                return Price
+                        .Builder
+                        .newInstance()
+                        .setMoviePurchase()
+                        .build()
+                        .computePrice();
 
-        } else {
+            }
+        }
+        //rental
+        else
 
-            return Price.Builder.newInstance()
-                    .setMovieRental(numberOfDays)
-                    .build().computePrice();
+        {
+            if(isNewRelease()) {
+
+                return Price
+                        .Builder
+                        .newInstance()
+                        .setMovieRental(numberOfDays)
+                        .newReleaseRental(numberOfDays)
+                        .build()
+                        .computePrice();
+            } else {
+
+                return Price
+                        .Builder
+                        .newInstance()
+                        .setMovieRental(numberOfDays)
+                        .build()
+                        .computePrice();
+
+            }
         }
     }
 

@@ -27,7 +27,8 @@ public class CompactDisc implements Item {
 
         if(Type.PURCHASEABLE.equals(this.type) ){
 
-            return Price.Builder
+            return Price
+                    .Builder
                     .newInstance()
                     .setCompactDiscPurchase()
                     .build()
@@ -60,4 +61,6 @@ public class CompactDisc implements Item {
     public String getTitle() {
         return title;
     }
+
+
 }

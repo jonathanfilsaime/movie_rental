@@ -11,36 +11,38 @@ import java.math.BigDecimal;
  */
 public class RegularMovie extends Movie {
 
-    private double price;
+
+    private String title;
+    private Type type;
+    private boolean newRelease;
     private int numberOfDays;
+
+    public RegularMovie(String title, boolean newRelease) {
+        super(title, newRelease);
+        this.title = title;
+        this.newRelease = newRelease;
+        this.type = Type.PURCHASEABLE;
+    }
 
     public RegularMovie(String title, boolean newRelease, int numberOfDays) {
         super(title, newRelease, numberOfDays);
         this.numberOfDays = numberOfDays;
+        this.title = title;
+        this.newRelease = newRelease;
+        this.numberOfDays = numberOfDays;
+        this.type = Type.RENTABLE;
     }
 
     @Override
     public BigDecimal getPrice() {
-
-        price = 0;
-
-        if (this.isNewRelease()) {
-            return new BigDecimal(this.numberOfDays * 3).setScale(1);
-        }
-
-        price += 2;
-        if(this.numberOfDays > 2){
-            price += (this.numberOfDays -2) * 1.5;
-        }
-
-        return new BigDecimal(price).setScale(1);
+       return super.getPrice().setScale(2, BigDecimal.ROUND_UP);
     }
 
 
     @Override
     public String toString() {
-        return "refactored.RegularMovie{" +
-                "price=" + price +
-                '}';
+        return "RegularMovie{ " +
+                "price=" + super.getPrice() +
+                "}";
     }
 }
