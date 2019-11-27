@@ -1,7 +1,9 @@
 package refactored;
 
+import java.math.BigDecimal;
+
 public interface Item {
-    double getPrice();
+    BigDecimal getPrice();
     Type getType();
     Item  getItem();
 }
