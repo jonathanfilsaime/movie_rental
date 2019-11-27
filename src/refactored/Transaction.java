@@ -1,5 +1,7 @@
 package refactored;
 
+import refactored.output.model.xml.Statement;
+
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
@@ -44,11 +46,14 @@ public class Transaction {
         int frequentRenterPoint = 0;
 
         for(int i = 0; i < items.size(); i++ ){
-            int points = 0;
-            frequentRenterPoint += new RewardPointsStrategyFactory().create(customer, rentals.get(i)).computerRewardPoints(points);
+            if(items.get(i).getType().toString().equalsIgnoreCase(Type.RENTABLE.toString()) &&
+                Movie.class.isAssignableFrom(items.get(i).getClass())) {
+                int points = 0;
+                Movie movie = (Movie) items.get(i);
+                frequentRenterPoint += new RewardPointsStrategyFactory().create(customer, movie).computerRewardPoints(points);
+            }
         }
         return frequentRenterPoint;
-
 
     }
 
@@ -62,38 +67,41 @@ public class Transaction {
 
         result.append("Rental Record for " + customer.getName() + "\n");
 
-        rentals.forEach( r -> {
-            result.append("\t" + r.getMovie().getTitle() + "\t" + r.getMovie().getPrice() + "\n");
+        items.forEach( r -> {
+
+            result.append("\t" + r.getItem().getTitle() + "\t" + r.getItem().getPrice() + "\n");
         });
 
         result.append("Amount owed is " + price.toString() + "\n");
-        result.append("You earned " + customer.getRewardPoints() + " frequent renter points  " + "\n");
+        result.append("You earned " + customer.getMovieRentalRewardPoints() + " frequent renter points  " + "\n");
 
-        if (customer.getRewardPoints() >= 10) {
-            int point = customer.getRewardPoints() / 10;
+        if (customer.getMovieRentalRewardPoints() >= 10) {
+            int point = customer.getMovieRentalRewardPoints() / 10;
             result.append("Congratulations you've earned " + point + " free movie rentals");
         }
 
         return result.toString();
     }
 
-    public List<Rental> getRentals() {
-        return rentals;
+    public List<Item> getRentals() {
+        return items;
     }
 
     public void getStatementOutputInXML(){
 
 
-        List<Item> movieTitleAndPriceList = new ArrayList<>();
+        List<refactored.output.model.xml.Item> movieTitleAndPriceList = new ArrayList<>();
 
-        rentals.forEach( r -> {
+        items.forEach( r -> {
 
-            Item movieTitleAndPrice = new Item(r.getMovie().getTitle(), r.getMovie().getPrice().toString());
+            refactored.output.model.xml.Item movieTitleAndPrice =
+                    new refactored.output.model.xml.Item(r.getItem().getTitle(), r.getItem().getPrice().toString());
             movieTitleAndPriceList.add(movieTitleAndPrice);
 
         });
 
-        Statement statement = new Statement(customer.getName(), movieTitleAndPriceList, price.toString(), Integer.toString(customer.getRewardPoints()));
+        Statement statement =
+                new Statement(customer.getName(), movieTitleAndPriceList, price.toString(), Integer.toString(customer.getMovieRentalRewardPoints()));
 
         try {
 

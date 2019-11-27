@@ -75,11 +75,11 @@ public class RewardPointsStrategyFactory {
 
         for( int i =0 ; i < customer.getTransactionHistory().get(index).getRentals().size(); i++){
 
-            if(customer.getTransactionHistory().get(index).getRentals().get(i).getMovie().getClass().getName().equalsIgnoreCase("refactored.ChildrenMovie")){
+            if(customer.getTransactionHistory().get(index).getRentals().get(i).getItem().getClass().getName().equalsIgnoreCase("refactored.ChildrenMovie")){
                 childrenCounter++;
             }
 
-            if(customer.getTransactionHistory().get(index).getRentals().get(i).getMovie().getClass().getName().equalsIgnoreCase("refactored.RegularMovie")){
+            if(customer.getTransactionHistory().get(index).getRentals().get(i).getItem().getClass().getName().equalsIgnoreCase("refactored.RegularMovie")){
                 regularCounter++;
             }
         }

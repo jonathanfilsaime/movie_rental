@@ -26,6 +26,7 @@ public class Movie implements Rental, Item {
         this.type = Type.RENTABLE;
     }
 
+    @Override
     public String getTitle() {
         return title;
     }
@@ -60,6 +61,6 @@ public class Movie implements Rental, Item {
 
     @Override
     public Item getItem() {
-        return null;
+        return this;
     }
 }

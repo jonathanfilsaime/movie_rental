@@ -12,7 +12,7 @@ import java.util.List;
 public class Customer {
     private String name;
     private int age;
-    private int rewardPoints;
+    private int movieRentalRewardPoints;
     private List<Transaction> transactionHistory;
 
 
@@ -26,16 +26,16 @@ public class Customer {
         return name;
     }
 
-    public int getRewardPoints() {
-        return rewardPoints;
+    public int getMovieRentalRewardPoints() {
+        return movieRentalRewardPoints;
     }
 
     public int getAge() {
         return age;
     }
 
-    public void setRewardPoints(int rewardPoints) {
-        this.rewardPoints = rewardPoints;
+    public void setMovieRentalRewardPoints(int movieRentalRewardPoints) {
+        this.movieRentalRewardPoints = movieRentalRewardPoints;
     }
 
     /**
@@ -46,11 +46,11 @@ public class Customer {
      * @param items
      * @return
      */
-    public Transaction rent(List<Item> items){
+    public Transaction checkout(List<Item> items){
         Transaction transaction = new Transaction(items, this);
         transactionHistory.add(transaction);
         transaction.computePrice();
-        setRewardPoints(transaction.computeRewardPoint());
+        setMovieRentalRewardPoints(transaction.computeRewardPoint());
         return transaction;
 
     }
@@ -63,7 +63,7 @@ public class Customer {
     public String toString() {
         return "refactored.Customer{" +
                 "name='" + name + '\'' +
-                ", rewardPoints=" + rewardPoints +
+                ", movieRentalRewardPoints=" + movieRentalRewardPoints +
                 ", transactions=" + transactionHistory +
                 '}';
     }

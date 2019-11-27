@@ -6,4 +6,5 @@ public interface Item {
     BigDecimal getPrice();
     Type getType();
     Item  getItem();
+    String getTitle();
 }
