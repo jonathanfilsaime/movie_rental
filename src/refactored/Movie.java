@@ -13,10 +13,8 @@ public class Movie implements Rental, Item {
     private Type type;
 
     public Movie(String title, boolean newRelease) {
-        this.numberOfDays = numberOfDays;
         this.title = title;
         this.newRelease = newRelease;
-        this.numberOfDays = numberOfDays;
         this.type = Type.PURCHASEABLE;
     }
 
@@ -48,7 +46,11 @@ public class Movie implements Rental, Item {
 
     @Override
     public BigDecimal getPrice() {
-        return new BigDecimal(this.numberOfDays * 3);
+        if (type == Type.RENTABLE) {
+            return new BigDecimal(this.numberOfDays * 3);
+        } else {
+            return new BigDecimal(5);
+        }
     }
 
     @Override

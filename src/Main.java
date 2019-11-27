@@ -13,15 +13,15 @@ public class Main {
     public static void main(String[] args) {
 
         //the following 3 movies are children movies which are not new releases
-        Rental aladdin = new ChildrenMovie("Aladdin", false, 1);
-        Rental up = new ChildrenMovie("Up", false, 3);
-        Rental frozen = new ChildrenMovie("Frozen", false, 5);
+        Item aladdin = new ChildrenMovie("Aladdin", false, 1);
+        Item up = new ChildrenMovie("Up", false, 3);
+        Item frozen = new ChildrenMovie("Frozen", false, 5);
 
         //creating new customer called Christopher
         Customer christopher = new Customer("Christopher", 4);
 
         //Christopher list of rental
-        List<Rental> christophersRentals = new ArrayList<>();
+        List<Item> christophersRentals = new ArrayList<>();
 
         //adding movies to Christopher's list of rental
         christophersRentals.add(aladdin);

@@ -1,8 +1,5 @@
 package refactored;
 
-import refactored.output.model.xml.Item;
-import refactored.output.model.xml.Statement;
-
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
@@ -19,12 +16,12 @@ import java.util.List;
  */
 public class Transaction {
 
-    private List<Rental> rentals;
+    private List<Item> items;
     private Customer customer;
     private BigDecimal price;
 
-    public Transaction(List<Rental> rentals, Customer customer) {
-        this.rentals = rentals;
+    public Transaction(List<Item> items, Customer customer) {
+        this.items = items;
         this.customer = customer;
         this.price = new BigDecimal(0);
     }
@@ -33,8 +30,8 @@ public class Transaction {
     public BigDecimal computePrice(){
         double amount = 0;
 
-        for(int i = 0; i < rentals.size() ; i++ ){
-            amount += rentals.get(i).getPrice().doubleValue();
+        for(int i = 0; i < items.size() ; i++ ){
+            amount += items.get(i).getPrice().doubleValue();
         }
 
         price = new BigDecimal(amount + price.doubleValue()).setScale(1);
@@ -46,7 +43,7 @@ public class Transaction {
 
         int frequentRenterPoint = 0;
 
-        for(int i = 0; i < rentals.size(); i++ ){
+        for(int i = 0; i < items.size(); i++ ){
             int points = 0;
             frequentRenterPoint += new RewardPointsStrategyFactory().create(customer, rentals.get(i)).computerRewardPoints(points);
         }

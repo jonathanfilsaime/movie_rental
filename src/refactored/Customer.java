@@ -43,11 +43,11 @@ public class Customer {
      * 1-computes the price
      * 2-updates the customer's frequent renter point
      * 3-add the transaction to the transaction history
-     * @param rentals
+     * @param items
      * @return
      */
-    public Transaction rent(List<Rental> rentals){
-        Transaction transaction = new Transaction(rentals, this);
+    public Transaction rent(List<Item> items){
+        Transaction transaction = new Transaction(items, this);
         transactionHistory.add(transaction);
         transaction.computePrice();
         setRewardPoints(transaction.computeRewardPoint());

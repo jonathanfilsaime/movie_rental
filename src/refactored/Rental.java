@@ -12,6 +12,6 @@ public interface Rental {
     
     public Movie getMovie();
 
-    public BigDecimal getPrice();
+//    public BigDecimal getPrice();
 
 }
