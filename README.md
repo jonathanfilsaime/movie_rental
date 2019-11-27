@@ -23,9 +23,9 @@ src -> refactored
 8 - Create an Item interface - movies, video games, music CDs, xbox, ps4, and books all implement this interface
 ```java
 BigDecimal getPrice();
-    Type getType();
-    Item  getItem();
-    String getTitle();
+Type getType();
+Item  getItem();
+String getTitle();
 ```
 9 -Create a Price class using the builder pattern. All prices are computed in this Price class. When adding a new item, this class will need to be updated to reflect it's price
 
